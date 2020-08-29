@@ -1,0 +1,64 @@
+[
+  {
+    "jobTitle": "SDE Intern",
+    "company": "Amazon",
+    "dates": "July, 2020 - Sept, 2020",
+    "languages": [
+      "Python", "Java", "HTML/CSS/JS", "PostgreSQL/RedshiftSQL"
+    ],
+    "technology": [
+      "Spring", "AWS", "Databases"
+    ],
+    "description": [
+      {
+        "title": "Automated end to end workflow for internal Amazon auditing team",
+        "body": [
+          "Setup AWS data pipelines to run SQL queries across multiple databases to automate ETL data flow",
+          "Developed full stack web server + web app deployed on AWS EC2 to serve audit data",
+          "Supports ~150 auditors reviewing over 80k cases per month across multiple regions/countries"
+        ]
+      }
+    ]
+  },
+  {
+    "jobTitle": "Student Researcher",
+    "company": "PARISlab at UCLA",
+    "dates": "Jan, 2019 - present",
+    "languages": [
+      "Python", "C++"
+    ],
+    "technology": [
+      "Keras", "Tensorflow"
+    ],
+    "description": [
+      {
+        "title": "Developing & researching Deep Learning methods for inverse design of porous materials",
+        "body": [
+          "Optimized preexisting sorption modeling simulation code in TensorFlow (~80-100x speedup)",
+          "Created DL method for inverse design of non-differentiable functions"
+        ]
+      }
+    ]
+  },
+  {
+    "jobTitle": "Project Lead/iOS Developer",
+    "company": "Nova, Tech for Good",
+    "dates": "Oct, 2019 - present",
+    "languages": [
+      "Swift"
+    ],
+    "technology": [
+      "iOS SDK", "SwiftUI", "Git", "Firebase"
+    ],
+    "description": [
+      {
+        "title": "Streamline other nonprofit organizations’ work by implementing technological solutions for their problems",
+        "body": [
+          "Designed and developed an iOS app for The Giving Spirit that allows their volunteers to better coordinate donations and kit distributions (~5k users, twice a year)",
+          "Worked with Swift/SwiftUI and iOS design, MVC, Storyboards, auto layout, MapKit, CoreLocation, Firebase",
+          "Collaborated with designers and other coders; delegated work"
+        ]
+      }
+    ]
+  }
+]

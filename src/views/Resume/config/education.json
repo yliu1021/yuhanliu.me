@@ -1,0 +1,36 @@
+{
+  "school": "University of California, Los Angeles",
+  "dates": "Sept, 2018 - Jun, 2022",
+  "degrees": [
+    {
+      "degree": "B.S. - Computer Science & Engineering",
+      "classes": [
+        "Algorithms and Complexity",
+        "Operating Systems",
+        "Programming Languages",
+        "Artificial Intelligence",
+        "Computer Network Fundamentals",
+        "Machine Learning",
+        "Computer Systems Architecture",
+        "Digital Design Lab",
+        "Formal Languages and Automata",
+        "Systems and Signals",
+        "Electric and Electronic Signals"
+      ]
+    },
+    {
+      "degree": "B.S. - Mathematics",
+      "classes": [
+        "Advanced Problem Solving",
+        "Probability Theory",
+        "Linear Algebra (Honors)",
+        "Analysis",
+        "Complex Analysis and Applications",
+        "Systems of Differential Equations",
+        "Optimization",
+        "Introduction to Networks"
+      ]
+    }
+  ],
+  "gpa": "3.848"
+}

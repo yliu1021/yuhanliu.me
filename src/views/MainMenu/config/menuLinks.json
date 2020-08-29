@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Resume",
+    "description": "Looking to learn more about my previous experiences? Check out my resume here.",
+    "href": "/resume"
+  },
+  {
+    "title": "Projects",
+    "description": "Everyone has a hobby. Learn more about the projects I've been working on in my free time here.",
+    "href": "/projects"
+  },
+  {
+    "title": "Blogs",
+    "description": "If you have a couple of minutes to burn through, take a moment to read through some interesting problems I'm currently working on. Maybe you'll find something cool.",
+    "href": "/blogs"
+  }
+]

@@ -1,0 +1,50 @@
+{
+  "languages": [
+    {
+      "language": "Python",
+      "level": "●●●●●"
+    },
+    {
+      "language": "C/C++",
+      "level": "●●●●○"
+    },
+    {
+      "language": "Swift",
+      "level": "●●●●○"
+    },
+    {
+      "language": "HTML/CS/JS",
+      "level": "●●●○○"
+    },
+    {
+      "language": "Objective-C",
+      "level": "●●●○○"
+    },
+    {
+      "language": "Java",
+      "level": "●●○○○"
+    }
+  ],
+  "frameworks": [
+    {
+      "framework": "iOS SDK",
+      "level": "●●●●●"
+    },
+    {
+      "framework": "TensorFlow/Keras",
+      "level": "●●●●●"
+    },
+    {
+      "framework": "React",
+      "level": "●●●●○"
+    },
+    {
+      "framework": "Node",
+      "level": "●●●○○"
+    },
+    {
+      "framework": "Flask/Django",
+      "level": "●●○○○"
+    }
+  ]
+}
