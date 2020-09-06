@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import MainMenu from './views/MainMenu/MainMenu';
 import Resume from "./views/Resume/Resume";
+import Projects from "./views/Projects/Projects";
+
 import NoMatchPage from "./views/404/404";
 
 function App() {
@@ -18,6 +20,9 @@ function App() {
                 </Route>
                 <Route path={"/resume"}>
                     <Resume/>
+                </Route>
+                <Route exact path={"/projects"}>
+                    <Projects/>
                 </Route>
                 <Route><NoMatchPage/></Route>
             </Switch>

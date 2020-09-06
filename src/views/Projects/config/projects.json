@@ -1,0 +1,9 @@
+[
+  {
+    "name": "LOLStats",
+    "description": "LOLStats is a website for users to check their League of Legends game stats. It uses deep learning to learn time series data from millions of games and predict winning chances to measure player performance",
+    "href": "/projects/lolstats.html",
+    "url": "http://beta.lolstats.info",
+    "languages": "JavaScript, Python | React, NodeJS, TensorFlow, AWS"
+  }
+]
