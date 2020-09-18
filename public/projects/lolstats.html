@@ -32,7 +32,7 @@
 </head>
 <body style="font-family: 'Roboto',serif">
 
-<div style="width: min(100% - 20px, 600px);display: block;margin-left: auto;margin-right: auto;line-height: 2">
+<div style="width: min(100% - 20px, 800px);display: block;margin-left: auto;margin-right: auto;line-height: 2">
     <h1 style="text-align: center">LOLStats</h1>
     <p style="text-align: center;color: #888">
         <i>Sept. 6, 2020</i>
@@ -54,7 +54,7 @@
         always bothered me was OP.GG's "OP Score".
     </p>
     <p>
-        What's an "OP Score" you ask? Well, according to OP.GG, it's
+        What's an "OP Score"? Well, according to OP.GG, it's
     </p>
     <blockquote>
         <p style="padding: 15px;background: #eee;border-radius: 5px">
@@ -91,7 +91,7 @@
     </p>
     <a href="https://www.pewsocialtrends.org/2020/01/09/trends-in-income-and-wealth-inequality/psdt_01-10-20_economic-inequality_1-4/"><img width="600" height="417" src="https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.10.20_economic-inequality_1-4.png?w=600" class="attachment-large size-large" alt="The gaps in wealth between upper-income and middle- and lower-income families are rising, and the share held by middle-income families is falling" loading="lazy" srcset="https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.10.20_economic-inequality_1-4.png 1274w, https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.10.20_economic-inequality_1-4.png?resize=300,209 300w, https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.10.20_economic-inequality_1-4.png?resize=768,534 768w, https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.10.20_economic-inequality_1-4.png?resize=600,417 600w, https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.10.20_economic-inequality_1-4.png?resize=160,111 160w, https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.10.20_economic-inequality_1-4.png?resize=582,405 582w, https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.10.20_economic-inequality_1-4.png?resize=200,139 200w, https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.10.20_economic-inequality_1-4.png?resize=260,181 260w, https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.10.20_economic-inequality_1-4.png?resize=310,216 310w, https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.10.20_economic-inequality_1-4.png?resize=420,292 420w, https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.10.20_economic-inequality_1-4.png?resize=640,445 640w, https://www.pewsocialtrends.org/wp-content/uploads/sites/3/2020/01/PSDT_01.10.20_economic-inequality_1-4.png?resize=740,515 740w" sizes="(max-width: 600px) 100vw, 600px" /></a>
 
-    <h3>"But wait! If statistics lie, then what makes LOLStats so special?"</h3>
+    <h3>"But if statistics lie, then what makes LOLStats so special?"</h3>
     <p>
         I should probably note here that what I've said isn't all entirely true. Numbers don't
         <i>really</i> lie. They tell it exactly as it is. It's more so what <i>isn't</i> written
@@ -130,7 +130,7 @@
         played.
     </p>
     <p>
-        Basically, given a player's actions in a game, we want to calculate how how likely that player is
+        Basically, given a player's actions in a game, we want to calculate how likely that player is
         to win across all possible games that could've been played. Mathematically, we can express this
         as a conditional probability:
     </p>
@@ -140,7 +140,11 @@
     <p>
         This allows us to measure how successful a player's actions are in achieving a win given their
         actions. Note that we <i>do not</i> factor into consideration a player's teammates' actions,
-        nor the enemies'.
+        nor the enemies'. The interpretation of this probability is basically <i>"Out of all the possible
+        teammates and opponents that a player could've had, what proportion of games should he/she have
+        won given his actions."</i> This way, one could argue that you can't really "blame" your teammates
+        for feeding or carrying, because we're essentially considering all possible scenarios (both where
+        your teammates feed or carry).
     </p>
     <p>
         Now, what exactly is a player's action? Well, it's anything that a player does that involves a
@@ -163,7 +167,7 @@
     block"/>
     <p>
         As one can see, as the number of kills increase, the proportion of wins increases. To better show
-        this, we can graph the win rate of these bins as the number of kills increase.
+        this, we can graph the win rate of these bins as a function of the number of kills.
     </p>
     <img src="lolstats/Kills%20Win%20Rate.png" alt="Win rates of different number of kills" style="max-width:
      max(100%, 240px);margin-left: auto;margin-right: auto;display:
@@ -192,13 +196,20 @@
      max(100%, 240px);margin-left: auto;margin-right: auto;display:
     block"/>
     <p>
-        Sure, you can live in the bottom right corner of this graph with 20 kills per game and 0 assists. But
+        So sure, you can live in the bottom right corner of this graph with 20 kills per game and 0 assists. But
         there are other ways you can contribute. If you have 20+ assists with only a few kills, you'll still
         be chilling at a good 80% - 90% win rate.
     </p>
     <p style="padding: 15px;background: #eee;border-radius: 5px">
         Note, however, that having 20 kills is still better than having 20 assists. Maybe being a K/D player
         is better than a team player? I mean, a 20-kill Master Yi is pretty unstoppable.
+    </p>
+    <p>
+        What we can draw from this analysis is two things. First, we can see how analyzing some statistic like
+        "number of kills" allows us to predict winning probabilities, which translates to performance by our
+        definition. And secondly, we can see how analyzing multiple statistics like "number of kills" <i>and</i>
+        "number of assists" can provide a more holistic picture. So, with this in mind, the next step is obvious:
+        more data.
     </p>
 
     <h2>5. Adding More Data</h2>
@@ -262,25 +273,34 @@
         <li>lane</li>
     </ol>
     <p>
-        As you can see, this list is fairly comprehensive, and I'm very grateful that Riot is offering
+        As you can see, this list is fairly comprehensive, and I'm pretty glad that Riot is offering
         all this data for free, for everyone. However, it's not complete (yet). There definitely are
         plans to add more features here, and more importantly, features that can cover a more
         fundamental level of performance such as player positioning and item choices. Unfortunately,
         the API (for good reason) doesn't reveal every single detail of each game, and I haven't
         (yet) coded all the infrastructure to handle things like player item choice either. However,
-        this list is a good start.
+        this list is a good place to start.
     </p>
     <p>
         Now, with 49 features (and more to come), it becomes difficult for us to generate pretty graphs
-        like the ones shown on this website, and calculate winning chances in this manner. More so,
+        like the ones shown on this website and calculate winning chances in this manner. More so,
         it becomes impossible to collect enough data such that we can calculate accurate win rates for
         <i>every</i> feasible possible combination of values for <i>each</i> of those features.
     </p>
     <p>
-        What we need, is something more powerful. Something that can interpolate between data points.
+        In fact, in preliminary testing, I experimented with several simple machine learning techniques.
+        The first is logistic regression. The thing with logistic regression is that it's very simple to
+        implement and quick to train. However, as the number of data points increased, the accuracy
+        of logistic regression plateaued to a steady 89.6%. This is ~ok ish, but not that good. Later, I
+        tried with several other ML methods ranging from nearest neighbor to radial kernel SVMs. However,
+        I just couldn't break the 90% accuracy barrier. Intuitively, I felt that the dataset was too small
+        to train a model with accurate predictions.
+    </p>
+    <p>
+        What we needed was something more powerful. Thus, I settled on a neural network.
     </p>
 
-    <h2>6. Machine Learning</h2>
+    <h2>6. Deep Learning</h2>
     <i>No, not Skynet</i>
     <p>
         When it comes to classification models, most people care about accuracy. However, we care about
@@ -292,10 +312,11 @@
     </p>
     <p>
         This is because we care more than just predicting if a player's actions led to a win or not. We care
-        about how <i>likely</i> a player's actions have led to a win.
+        about how <i>likely</i> a player's actions have led to a win because this system, afterall, is meant
+        to rate performance (which isn't binary).
     </p>
     <p style="padding: 15px;background: #eee;border-radius: 5px">
-        If we minimize cross entropy, we can see that the optimal solution is exactly at \(\hat{y} = y\)
+        If we minimize the cross entropy loss, we can see that the optimal solution is exactly at \(\hat{y} = y\)
     </p>
     <p>
         Now, with this in mind, we can train a model to learn
@@ -309,26 +330,35 @@
     <p style="text-align: center">
         \( P(\text{win } | \text{ \{matchDuration = 1289 minutes, kills = 7, deaths = 3, ...\}}) \)
     </p>
+    <p>
+        I'll skip the details of hyperparameter tuning, adding BatchNorms, experimenting with different Dropout
+        rates, etc. The final accuracy of this neural network was 95%, which is more acceptable.
+    </p>
 
     <h2>7. Putting It All Together</h2>
     <i>Finally</i>
     <p>
-        You can check out LOLStats <a href="http://beta.lolstats.info">here</a>. Note that it's in beta
-        (and it's running on a Raspberry Pi) so there may be unexpected downtime.
-    </p>
-    <p>
-        The tech stack is also in beta and very simple. As of now, the model is served on my desktop
-        and the Node server serving the webpage is running on a Raspberry Pi.
+        You can check out LOLStats <a href="http://beta.lolstats.info">here</a>. A Raspberry Pi currently
+        serves the React app, and it communicates with my local desktop which serves the ML model. This
+        combination is definitely not optimal, but for rapid prototyping, I went with this because it
+        works and it's also very easy for me to train a new model and deploy it without downtime for the
+        Raspberry Pi. The downside though is that I have to keep my local desktop running if I want
+        LOLStats to work.
     </p>
 
     <h2>8. Whats Next?</h2>
-    <i>We're heading to the moon!</i>
+    <i>The sky's the limit</i>
     <p>
-        Well, not the moon, but the cloud. As of now, AWS seems like a good place to move everything.
-        They offer SageMaker for ML, and cheap computational instances for scraping and server hosting.
-        No longer would I have to keep my computer running for days, training models or collecting data,
-        and there certainly won't be much downtime at all. More on that should be coming soon in a later
-        post, so check back in a few weeks!
+        Right now, there are two major areas of improvement that I need to work on. First is the infrastructure
+        stack, which looks pretty shabby. I mean, I'm hosting a website on a Raspberry Pi, which runs ML
+        inferences on my computer. If any of those services go down, the entire website stops working (which is
+        the main reason why it's in beta). The second issue is the ML itself. As I wrote above, the model is
+        trained (as of now) only on <i>post game data</i>. There's definitely a lot more information to be
+        exploited through in game data (which is coming soon!) as well as player match-ups.
+    </p>
+    <p>
+        Although there's no set ETA, LOLStats beta v2 with in game data should be coming in a few weeks, and
+        the plan is to release it officially in mid 2021.
     </p>
 
     <h2>Misc</h2>
