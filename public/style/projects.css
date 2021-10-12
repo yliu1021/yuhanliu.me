@@ -1,0 +1,16 @@
+img {
+    max-width: max(100%,240px);
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.aside {
+    padding: 15px;
+    background: #eee;
+    border-radius: 5px;
+}
+
+.date {
+    color: #888;
+}
