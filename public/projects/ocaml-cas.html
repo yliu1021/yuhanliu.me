@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="theme-color" content="#000000"/>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -35,6 +35,15 @@
         <hr>
     </div>
 
+    <div class="aside">
+        <h3>Try It First</h3>
+        <label for="cas_demo_input"></label><input type="text" id="cas_demo_input" name="cas_demo_input"
+                                                   placeholder="Enter a math expression"
+                                                   style="width: 80%;height: 20px;font-size: 1em;padding: 10px;">
+        <p id="cas_demo_output"></p>
+        <script src="./ocaml-cas/ocaml-cas.js"></script>
+    </div>
+
     <p>
         Every language has its perks. C++ has move constructors, Python has a
         <a href="https://xkcd.com/353/">library for everything</a>, JavaScript
@@ -59,9 +68,10 @@
     <h2>1. Let's Start Parsing</h2>
     <i>Well, not yet</i>
     <p>
-        Before we start parsing, lets layout our plan; it surprisingly (or maybe not) that it takes a bit of work to go
-        from "1 + 1" to "2". This is because math notation is sometimes tricky and other times just
-        <a href="https://math.stackexchange.com/questions/592797/sin2-notation-and-uses-of-the-alternative">downright frustrating</a>.
+        Before we start parsing, lets layout our plan; it surprisingly (or maybe not) takes a bit of work to go from
+        "1 + 1" to "2". This is because math notation is sometimes tricky and other times just
+        <a href="https://math.stackexchange.com/questions/592797/sin2-notation-and-uses-of-the-alternative">downright
+            frustrating</a>.
         There are tons of math expression parsing algorithms out there, one of the most popular is the
         <a href="https://en.wikipedia.org/wiki/Shunting-yard_algorithm">shunting yard algorithm</a>. However, we'll take
         a different approach that's a little more generalizable (at a cost).
@@ -121,7 +131,8 @@
   | Exponentiate
   | Negate</code></pre>
     <p>
-        The token types are all pretty self-explanatory as they describe exactly what characters they represent. However,
+        The token types are all pretty self-explanatory as they describe exactly what characters they represent.
+        However,
         note that some of them depend on the <b>context</b> of surrounding characters. For example, a "-" can either be
         a <code>Minus</code> or a <code>Negate</code> depending on what come before it. Thus, let's define a function
         that'll tell us which.
@@ -144,12 +155,14 @@
     <p>
         Next, since we want this calculator to follow conventional math grammar as closely as possible, we want to allow
         implicit multiplication. This means something like \(xyz\) should be parsed as \(x \times y \times z\). However,
-        we must be careful because function names like \(\sin(\pi)\) should not be parsed as \(s \times i \times n \times \pi\).
+        we must be careful because function names like \(\sin(\pi)\) should not be parsed as \(s \times i \times n
+        \times \pi\).
         Thus, we must differentiate between functions, constants, and variables.
     </p>
     <p>
         The simplest of the three to detect are numbers. Simply because, well, they're numbers. They begin with either a
-        dash, comma, or digit. We can write a simple function to extract a number from the head of a <code>char list</code>
+        dash, comma, or digit. We can write a simple function to extract a number from the head of a <code>char
+        list</code>
         and return its tail:
     </p>
     <pre class="prettyprint"><code>let tokenize_number_value =
@@ -170,11 +183,13 @@
   tok_numbers 0 false
 ;;</code></pre>
     <p>
-        Note that we actually don't have to care about any leading '-' because the <code>Negate</code> token will match any
+        Note that we actually don't have to care about any leading '-' because the <code>Negate</code> token will match
+        any
         dashes first.
     </p>
     <p>
-        Next comes the functions and variables. The way we'll approach this is to (for now) treat <b>every</b> continuous
+        Next comes the functions and variables. The way we'll approach this is to (for now) treat <b>every</b>
+        continuous
         string of letters as a function (even if they're supposed to represent individual variables).
     </p>
     <pre class="prettyprint"><code>let tokenize_char_value =
@@ -209,12 +224,15 @@
     | _ -> tok :: rest)
 ;;</code></pre>
     <p>
-        Note the use of a <code>Repl_state</code> module. This is what we'll use to keep track of all the defined constants
+        Note the use of a <code>Repl_state</code> module. This is what we'll use to keep track of all the defined
+        constants
         and functions. More on this will be covered later.
     </p>
     <p>
-        Finally, we have the pieces to perform tokenization. The way we'll do this is iteratively chopping of the head of
-        the input string to parse as a token while accumulating them into a list. The "chopping" function looks like this
+        Finally, we have the pieces to perform tokenization. The way we'll do this is iteratively chopping of the head
+        of
+        the input string to parse as a token while accumulating them into a list. The "chopping" function looks like
+        this
     </p>
     <pre class="prettyprint"><code>let get_next_token prev_token chars =
   match chars with
@@ -324,7 +342,8 @@
         You can see how each expression (on the left-hand side of the arrow) can be "expanded" into a rule (right-hand
         side of the arrow). Thus, if we wanted to match a sequence of tokens against an <code>ExprEq</code> expression,
         we'll try to first match it with something of the form <code>ExprComma</code> followed by a "=" token followed
-        by a <code>ExprEq</code>. If that fails, we'll try to match it against a <code>ExprComma</code> expression instead.
+        by a <code>ExprEq</code>. If that fails, we'll try to match it against a <code>ExprComma</code> expression
+        instead.
         Recursively doing this should allow us to match every valid math expression with one of these rules, which will
         tell us how to create the syntax tree.
     </p>
@@ -391,10 +410,13 @@
         Most of these substitutions are just <code>InfixSubstitution</code>'s because a lot of math has infix notations.
     </p>
     <p>
-        Now, for the actual parsing itself, we'll do this through two mutually recursive functions. One function will try
+        Now, for the actual parsing itself, we'll do this through two mutually recursive functions. One function will
+        try
         to match a token with an expression, while the other function will try to match the tokens with a singular
-        substitution rule. The former function will iterate through all the available substitutions available for the given
-        expression, while the latter function will divide up the tokens into pieces and recursively call the first function
+        substitution rule. The former function will iterate through all the available substitutions available for the
+        given
+        expression, while the latter function will divide up the tokens into pieces and recursively call the first
+        function
         on each part of the substitution. Together, they look like this:
     </p>
     <pre class="prettyprint"><code>let rec parse_as_expr expr tokens =
@@ -515,7 +537,8 @@ and perform_sub = function
         structure.
     </p>
     <p>
-        The conversion from a syntax tree is also pretty straightforward because both trees have the same structure. We're
+        The conversion from a syntax tree is also pretty straightforward because both trees have the same structure.
+        We're
         just mapping nodes of one tree to nodes of the other.
     </p>
     <pre class="prettyprint"><code>let node x = Node x
@@ -563,7 +586,8 @@ let rec of_parse_tree =
 </code></pre>
     <p>
         Finally, to evaluate this expression tree, we can do this recursively. The entire function is quite lengthy
-        (not because of the complexity, but rather the sheer number of functions) so I'll just include the first few lines
+        (not because of the complexity, but rather the sheer number of functions) so I'll just include the first few
+        lines
     </p>
     <pre class="prettyprint"><code>let rec to_float = function
   | Add (x, y) -> to_float x +. to_float y
@@ -603,14 +627,16 @@ let rec of_parse_tree =
     <h2>5. Conclusion</h2>
     <i>Steps towards a true Computer Algebra System</i>
     <p>
-        We saw with a couple hundred lines of code, we can implement a parser all the way to an expression tree. However,
-        we're not quite finished yet. After all, we still haven't implemented symbolic computations... or have we?
+        We saw with a couple of hundred lines of code, we can implement a parser all the way to an expression tree.
+        However, we're not quite finished yet. After all, we still haven't implemented symbolic computations... or
+        have we?
     </p>
     <p>
         If you run the code, you'll see that the <code>to_float</code> function will return Nan when your input has
         variables. However, this is more so a result of the lack of conversion from a variable to a float rather than
         the lack of support for symbols. In fact, if you print out the expression tree, you'll see that indeed it does
-        contain any variables in your input. The next step is simply defining the rules of mathematics so that our program
+        contain any variables in your input. The next step is simply defining the rules of mathematics so that our
+        program
         can manipulate the expression tree into meaningful representations.
     </p>
     <p>
