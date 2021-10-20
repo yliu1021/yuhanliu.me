@@ -4,6 +4,11 @@ let ws = undefined;
 let disconnectTimeout = undefined;
 let userQuery
 
+window.onbeforeunload = function() {
+    ws.onclose = function () {}; // disable onclose handler first
+    ws.close();
+};
+
 function connectWS() {
     ws = new WebSocket(apiURL);
     ws.addEventListener("open", (event) => {
@@ -23,6 +28,10 @@ function connectWS() {
                 demoOutput.style.color = "red";
             }
         }
+    });
+    ws.addEventListener("close", (event) => {
+        demoOutput.style.color = "black";
+        demoOutput.innerText = "Disconnected. Start typing to reconnect.";
     });
 }
 
@@ -45,8 +54,6 @@ function updateCalc(val) {
     }
     disconnectTimeout = setTimeout(() => {
         ws.close();
-        demoOutput.style.color = "black";
-        demoOutput.innerText = "Disconnected. Start typing to reconnect.";
     }, 5000);
 }
 
