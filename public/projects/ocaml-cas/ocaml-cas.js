@@ -45,6 +45,7 @@ function updateCalc(val) {
     }
     disconnectTimeout = setTimeout(() => {
         ws.close();
+        demoOutput.style.color = "black";
         demoOutput.innerText = "Disconnected. Start typing to reconnect.";
     }, 5000);
 }
