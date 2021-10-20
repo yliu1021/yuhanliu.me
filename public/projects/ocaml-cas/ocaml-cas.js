@@ -1,30 +1,56 @@
+const demoOutput = document.getElementById("cas_demo_output");
+const apiURL = "wss://api.yuhanliu.me/ocaml_cas/ws/";
+let ws = undefined;
+let disconnectTimeout = undefined;
+let userQuery
+
+function connectWS() {
+    ws = new WebSocket(apiURL);
+    ws.addEventListener("open", (event) => {
+        demoOutput.innerText = "Connected!";
+        if (userQuery) {
+            ws.send(userQuery);
+        }
+    });
+    ws.addEventListener("message", (event) => {
+        const msg = JSON.parse(event.data);
+        if (msg["query"] === userQuery) {
+            const res = parseFloat(msg["response"]);
+            if (!isNaN(res)) {
+                demoOutput.style.color = "black";
+                demoOutput.innerText = msg["response"];
+            } else {
+                demoOutput.style.color = "red";
+            }
+        }
+    });
+}
+
+function updateCalc(val) {
+    userQuery = val;
+    if (userQuery === "") {
+        demoOutput.textContent = "0.";
+        return;
+    }
+    if (ws === undefined || ws.readyState === WebSocket.CLOSED) {
+        demoOutput.innerText = "Connecting...";
+        connectWS();
+        return;
+    }
+    if (ws.readyState === WebSocket.OPEN) {
+        ws.send(userQuery);
+    }
+    if (disconnectTimeout) {
+        clearTimeout(disconnectTimeout);
+    }
+    disconnectTimeout = setTimeout(() => {
+        ws.close();
+        demoOutput.innerText = "Disconnected. Start typing to reconnect.";
+    }, 5000);
+}
+
 document
     .getElementById("cas_demo_input")
-    .addEventListener("change", (event) => {
-        const val = event.target.value;
-        const api_url = "https://api.yuhanliu.me/ocaml_cas/";
-        const fetch_init = {
-            method: "POST",
-            redirect: 'follow',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({"query": val})
-        }
-        fetch(api_url, fetch_init)
-            .then((res) => res.json())
-            .then((data) => {
-                if ("response" in data) {
-                    document
-                        .getElementById("cas_demo_output")
-                        .innerText = data["response"];
-                } else {
-                    document
-                        .getElementById("cas_demo_output")
-                        .innerText = "An unexpected error occured";
-                }
-            })
-            .catch((err) => {
-                console.log(`Failed to fetch: ${err}`)
-            });
+    .addEventListener("keyup", (event) => {
+        updateCalc(event.target.value);
     });
