@@ -1,5 +1,5 @@
 const demoOutput = document.getElementById("cas_demo_output");
-const apiURL = "wss://api.yuhanliu.me/ocaml_cas/ws/";
+const apiURL = "wss://api.yuhanliu.me/ocaml_cas/v2/ws/";
 let ws = undefined;
 let disconnectTimeout = undefined;
 let userQuery
@@ -20,10 +20,10 @@ function connectWS() {
     ws.addEventListener("message", (event) => {
         const msg = JSON.parse(event.data);
         if (msg["query"] === userQuery) {
-            const res = parseFloat(msg["response"]);
-            if (!isNaN(res)) {
+            const res = msg["response"];
+            if (res["success"] && res["number"] !== null) {
                 demoOutput.style.color = "black";
-                demoOutput.innerText = msg["response"];
+                demoOutput.innerText = res["number"];
             } else {
                 demoOutput.style.color = "red";
             }
@@ -38,7 +38,7 @@ function connectWS() {
 function updateCalc(val) {
     userQuery = val;
     if (userQuery === "") {
-        demoOutput.textContent = "0.";
+        demoOutput.textContent = "0";
         return;
     }
     if (ws === undefined || ws.readyState === WebSocket.CLOSED) {
