@@ -18,15 +18,6 @@
     -moz-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.project a:after {
-    padding-left: 2px; /* Add a little space between text and arrow */
-    content: "\25BA"; /* Unicode hex for &raquo; */
-}
-
-.project a:visited:after {
-    color: mediumpurple;
-}
-
 .project a h2 {
     padding: 0;
     margin: 0;
