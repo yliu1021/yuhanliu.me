@@ -1,5 +1,5 @@
 const demoOutput = document.getElementById("cas_demo_output");
-const apiURL = "wss://api.yuhanliu.me/ocaml_cas/v2/ws/";
+const apiURL = "wss://yuhanliu.me/api/ocaml_cas/v2/ws/";
 let ws = undefined;
 let disconnectTimeout = undefined;
 let userQuery
