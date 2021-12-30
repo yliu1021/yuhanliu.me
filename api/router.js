@@ -1,13 +1,13 @@
-const express = require("express");
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-const ocamlCAS = require("./ocaml_cas/router");
-router.use("/ocaml_cas", ocamlCAS);
+const ocamlCAS = require('./ocaml_cas/router')
+router.use('/ocaml_cas', ocamlCAS)
 
-router.get("/", (req, res) => {
-    res.json({
-        api: "online"
-    });
-});
+router.get('/', (req, res) => {
+  res.json({
+    api: 'online'
+  })
+})
 
-module.exports = router;
+module.exports = router

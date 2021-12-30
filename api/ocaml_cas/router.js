@@ -1,13 +1,13 @@
-const express = require("express");
-const ocaml_cas = express.Router();
+const express = require('express')
+const ocamlCAS = express.Router()
 
-const bodyParser = require("body-parser");
-ocaml_cas.use(bodyParser.json());
+const bodyParser = require('body-parser')
+ocamlCAS.use(bodyParser.json())
 
-const ocaml_cas_v1 = require("./v1/router");
-ocaml_cas.use("/v1", ocaml_cas_v1);
+const ocamlCASV1 = require('./v1/router')
+ocamlCAS.use('/v1', ocamlCASV1)
 
-const ocaml_cas_v2 = require("./v2/router");
-ocaml_cas.use("/v2", ocaml_cas_v2);
+const ocamlCASV2 = require('./v2/router')
+ocamlCAS.use('/v2', ocamlCASV2)
 
-module.exports = ocaml_cas;
+module.exports = ocamlCAS
