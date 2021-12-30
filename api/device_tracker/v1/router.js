@@ -26,6 +26,7 @@ router.post('/', (req, res) => {
     })
     return
   }
+  console.log("req body: " + JSON.stringify(req.body));
   const name = req.body.name
   if (!name) {
     res.status(400).json({
