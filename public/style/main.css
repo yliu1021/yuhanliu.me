@@ -1,0 +1,24 @@
+body {
+    font-family: "Roboto", serif;
+}
+
+.header {
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 3em;
+}
+
+h1 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.container {
+    width: min(100% - 20px, 800px);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 2;
+}

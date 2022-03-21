@@ -1,0 +1,33 @@
+.project {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 8px 32px 8px 32px;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.project:hover, .project:active {
+    background-color: #efefefef;
+}
+
+.project a {
+    text-decoration: none;
+    color: black;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -moz-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.project a h2 {
+    padding: 0;
+    margin: 0;
+}
+
+.project p {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#links > * {
+    margin: 8px;
+}
