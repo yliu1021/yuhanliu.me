@@ -6,3 +6,7 @@
 
 # npm
 node_modules/
+
+# Firebase
+.firebase
+*.log
