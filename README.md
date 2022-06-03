@@ -2,5 +2,4 @@
 
 This is my personal website, hosted at [yuhanliu.me](yuhanliu.me)
 
-- Hosted on Firebase
-- Written in HTML/CSS/TS
+[![Deploy](https://github.com/yliu1021/yuhanliu.me/actions/workflows/firebase-deploy.yml/badge.svg?branch=main)](https://github.com/yliu1021/yuhanliu.me/actions/workflows/firebase-deploy.yml)
