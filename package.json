@@ -2,7 +2,8 @@
   "name": "yuhanliu.me",
   "scripts": {
     "build": "tailwindcss build -i ./src/input.css -o ./public/style.css",
-    "watch": "tailwindcss build -i ./src/input.css -o ./public/style.css -w"
+    "watch": "tailwindcss build -i ./src/input.css -o ./public/style.css -w",
+    "emulator": "firebase emulators:start"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.2",
