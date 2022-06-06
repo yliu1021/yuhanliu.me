@@ -170,7 +170,7 @@
             <p>
                 Now, we use Bayes' theorem to calculate the probability of there being \(N\) cards.
                 $$ \begin{align}
-                \mathbb{P}(\text{$N$ total cards} &| \text{Observation}) \\
+                &\mathbb{P}(\text{$N$ total cards} | \text{Observation}) \\
                 =& \frac{\mathbb{P}( \text{Observation} | \text{$N$ total cards}) \mathbb{P}(\text{$N$ total cards})}{\mathbb{P}(\text{Observations})} \\
                 =& \frac{N - 3}{N \choose 3} \cdot \frac{ \mathbb{P}(\text{$N$ total cards})}{\mathbb{P}(\text{Observations})}
                 \end{align} $$
@@ -353,8 +353,7 @@
                 Aggregating together using the above formula, we have
                 $$ \begin{multline}
                 \mathbb{P}(\text{$N$ total cards} | \{\text{Observation}_1, \text{Observation}_2\}) \\
-                \propto \mathbb{P}(\text{Observation}_1 | \text{$N$ total cards}) \cdot \mathbb{P}(\text{Observation}_2
-                | \text{$N$ total cards}) \\
+                \propto \mathbb{P}(\text{Observation}_1 | \text{$N$ total cards}) \cdot \mathbb{P}(\text{Observation}_2 | \text{$N$ total cards}) \\
                 = \frac{N-3}{N \choose 3} \cdot \frac{{N-3} \choose 2}{N \choose 3}
                 \end{multline} $$
                 This new likelihood is now maximized at \(N=6\). Recall that before when we just had two rounds,
@@ -412,6 +411,9 @@
             <h3>Try it live!</h3>
             <div class="flex flex-row space-x-2">
                 <input id="card_values" type="text" class="rounded p-2 w-auto grow"
+                    spellcheck="false"
+                    autocapitalize="off"
+                    autocomplete="off"
                     placeholder="Enter comma separated values (e.g. A,B,C or 1, 2, 5)"></input>
                 <button id="add_cards"
                     class="transition ease-in-out rounded py-1 px-1 text-center bg-slate-600 text-white hover:bg-slate-700 active:bg-slate-800">Add

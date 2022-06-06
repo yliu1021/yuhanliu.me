@@ -121,10 +121,13 @@ gameButton.onclick = () => {
             const guessInput = document.createElement("input")
             guessInput.classList.add("rounded", "p-2")
             guessInput.placeholder = "Deck size guess"
-            guessInput.type = "text"
+            guessInput.type = "number"
             guessInput.id = "guess_input"
+            guessInput.spellcheck = "false"
+            guessInput.autocapitalize = "off"
+            guessInput.autocomplete = "off"
+            guessInput.pattern = "\d*"
             gameContent.appendChild(guessInput)
-            guessInput.focus()
             game.state = "guessing"
             gameButton.innerHTML = "Guess"
         }
